@@ -384,3 +384,159 @@ header button:hover {
 <!-- Instagram Banner -->
 <div class="banner">
   Підпишись на Інстаграм канал quite.richles
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Quite Richles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Плавный шрифт бренда -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial, sans-serif; background:#f2f2f2; }
+
+/* Instagram Banner */
+.banner {
+  position: fixed; top:0; width:100%; background:#000; color:#fff; padding:12px; text-align:center; font-weight:bold; z-index:1000;
+}
+.banner a { color:#00ffd5; text-decoration:none; }
+
+/* Название бренда */
+.brand-title {
+  text-align:center; font-family:'Pacifico', cursive; font-size:48px; margin:70px 0 20px 0; color:#222; text-shadow:1px 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Категории */
+header {
+  display:flex; justify-content:center; gap:15px; margin-bottom:20px;
+}
+header button {
+  padding:10px 20px; border:none; background:#333; color:#fff; cursor:pointer; border-radius:5px; transition:0.3s;
+}
+header button:hover { background:#555; }
+
+/* Секция товаров */
+#products {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:20px; padding:0 20px 50px 20px;
+}
+
+/* Карточки */
+.product {
+  background:#fff; padding:15px; border-radius:8px; text-align:center; transition:0.3s; position:relative;
+}
+.product:hover { box-shadow:0 8px 16px rgba(0,0,0,0.2); }
+.product img { width:100%; height:180px; background:#ddd; border-radius:5px; }
+.product h3 { margin:10px 0 5px 0; }
+.product p { color:#555; }
+.product button {
+  padding:8px 15px; background:#00bfff; color:#fff; border:none; border-radius:5px; cursor:pointer;
+}
+.product button:hover { background:#009acd; }
+
+/* Админ-панель */
+#adminPanel { display:none; text-align:center; margin:20px; }
+#adminPanel button { padding:10px 20px; background:#ff7f50; color:#fff; border:none; border-radius:5px; cursor:pointer; }
+#adminPanel button:hover { background:#ff6347; }
+
+/* Модальное окно для пароля */
+#passwordModal {
+  position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);
+  display:flex; justify-content:center; align-items:center; z-index:2000;
+}
+#passwordModalContent { background:#fff; padding:30px; border-radius:8px; text-align:center; }
+#passwordModal input { padding:10px; width:150px; font-size:16px; margin-right:10px; }
+#passwordModal button { padding:10px 15px; font-size:16px; cursor:pointer; }
+
+/* Форма покупки */
+#buyForm {
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:3000;
+}
+#buyFormContent { background:#fff; padding:30px; border-radius:8px; width:300px; }
+#buyFormContent input { width:100%; padding:8px; margin:5px 0; }
+#buyFormContent button { padding:10px; width:100%; margin-top:10px; cursor:pointer; background:#00bfff; color:#fff; border:none; border-radius:5px; }
+#buyFormContent button:hover { background:#009acd; }
+
+</style>
+</head>
+<body>
+
+<!-- Instagram Banner -->
+<div class="banner">
+  Підпишись на Instagram — знижка 15% 👉 <a href="https://instagram.com/ТВОЙ_ИНСТАГРАМ" target="_blank">Instagram</a>
+</div>
+
+<!-- Бренд -->
+<div class="brand-title">Quite Richles</div>
+
+<!-- Категории -->
+<header>
+  <button onclick="showCategory('all')">Всі товари</button>
+  <button onclick="showCategory('men')">Чоловіче</button>
+  <button onclick="showCategory('women')">Жіноче</button>
+  <button onclick="showCategory('kids')">Дітям</button>
+  <button onclick="showCategory('sale')">Акції</button>
+</header>
+
+<!-- Товары -->
+<div id="products"></div>
+
+<!-- Админ-панель -->
+<div id="adminPanel">
+  <button onclick="addCard()">Додати карточку</button>
+</div>
+
+<!-- Модальное окно для пароля -->
+<div id="passwordModal">
+  <div id="passwordModalContent">
+    <p>Введіть пароль для входу в адмін-панель:</p>
+    <input type="password" id="adminPassword" placeholder="Пароль">
+    <button onclick="checkPassword()">Вхід</button>
+  </div>
+</div>
+
+<!-- Форма покупки -->
+<div id="buyForm">
+  <div id="buyFormContent">
+    <h3>Оформлення покупки</h3>
+    <input type="text" id="region" placeholder="Ваша область">
+    <input type="text" id="city" placeholder="Місто">
+    <input type="text" id="fullname" placeholder="Прізвище та ім'я">
+    <input type="text" id="phone" placeholder="Номер телефону">
+    <input type="text" id="np" placeholder="Відділення Нової Пошти">
+    <button onclick="submitBuy()">Підтвердити</button>
+  </div>
+</div>
+
+<script>
+const adminPass = "280513";
+let currentCategory = "all";
+let productsData = [];
+const categories = ["all","men","women","kids","sale"];
+
+// Проверка пароля
+function checkPassword(){
+  const input = document.getElementById("adminPassword").value;
+  if(input === adminPass){
+    document.getElementById("adminPanel").style.display="block";
+    document.getElementById("passwordModal").style.display="none";
+    alert("Адмін-панель активована");
+  } else {
+    alert("Невірний пароль");
+  }
+}
+
+// Добавление карточки
+function addCard(){
+  const title = prompt("Назва товару:");
+  const price = prompt("Ціна:");
+  const img = prompt("URL фото (можно оставить пустым):","");
+  const cat = currentCategory==="all"?"all":currentCategory;
+  productsData.push({title,price,category:cat,img});
+  renderProducts();
+}
+
+// Показ категории
