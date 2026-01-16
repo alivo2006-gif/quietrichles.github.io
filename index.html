@@ -434,21 +434,7 @@ header button:hover { background:#555; }
 .product button {
   padding:8px 15px; background:#00bfff; color:#fff; border:none; border-radius:5px; cursor:pointer;
 }
-.product button:hover { background:#009acd; }
-
-/* Админ-панель */
-#adminPanel { display:none; text-align:center; margin:20px; }
-#adminPanel button { padding:10px 20px; background:#ff7f50; color:#fff; border:none; border-radius:5px; cursor:pointer; }
-#adminPanel button:hover { background:#ff6347; }
-
-/* Модальное окно для пароля */
-#passwordModal {
-  position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);
-  display:flex; justify-content:center; align-items:center; z-index:2000;
-}
-#passwordModalContent { background:#fff; padding:30px; border-radius:8px; text-align:center; }
-#passwordModal input { padding:10px; width:150px; font-size:16px; margin-right:10px; }
-#passwordModal button { padding:10px 15px; font-size:16px; cursor:pointer; }
+.product button:hover { background:#
 
 /* Форма покупки */
 #buyForm {
@@ -482,21 +468,7 @@ header button:hover { background:#555; }
 </header>
 
 <!-- Товары -->
-<div id="products"></div>
-
-<!-- Админ-панель -->
-<div id="adminPanel">
-  <button onclick="addCard()">Додати карточку</button>
-</div>
-
-<!-- Модальное окно для пароля -->
-<div id="passwordModal">
-  <div id="passwordModalContent">
-    <p>Введіть пароль для входу в адмін-панель:</p>
-    <input type="password" id="adminPassword" placeholder="Пароль">
-    <button onclick="checkPassword()">Вхід</button>
-  </div>
-</div>
+<div id="products"></
 
 <!-- Форма покупки -->
 <div id="buyForm">
@@ -520,12 +492,7 @@ const categories = ["all","men","women","kids","sale"];
 // Проверка пароля
 function checkPassword(){
   const input = document.getElementById("adminPassword").value;
-  if(input === adminPass){
-    document.getElementById("adminPanel").style.display="block";
-    document.getElementById("passwordModal").style.display="none";
-    alert("Адмін-панель активована");
-  } else {
-    alert("Невірний пароль");
+  if(input === 
   }
 }
 
@@ -533,7 +500,7 @@ function checkPassword(){
 function addCard(){
   const title = prompt("Назва товару:");
   const price = prompt("Ціна:");
-  const img = prompt("URL фото (можно оставить пустым):","");
+  const img = prompt("URL фото ):","");
   const cat = currentCategory==="all"?"all":currentCategory;
   productsData.push({title,price,category:cat,img});
   renderProducts();
@@ -657,17 +624,7 @@ footer{
   width:100%;
   margin-bottom:6px;
 }
-#admin button{width:100%;margin-top:5px}
 
-/* Password */
-#passBox{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  justify-content:center;
-  align-items:center;
-  z-index:3000;
 }
 #passBox div{
   background:#111;
