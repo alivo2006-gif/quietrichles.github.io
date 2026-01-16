@@ -949,3 +949,228 @@ function show(cat){
   data.filter(d=>cat==="all"||d.cat===cat)
       .forEach(d=>{
         p.inn
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quite Richles</title>
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BODY */
+body {
+  background: #000;
+  color: #fff;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-bottom: 1px solid #222;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+.icons span {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 64px;
+  letter-spacing: 4px;
+}
+
+.hero p {
+  margin: 15px 0 30px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.hero button {
+  padding: 14px 40px;
+  background: #fff;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* PRODUCTS */
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  background: #111;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.card div {
+  height: 200px;
+  background: #222;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 13px;
+}
+
+/* PRODUCT VIEW */
+.product-view {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  padding: 40px;
+}
+
+.product-view.active {
+  display: block;
+}
+
+.buy {
+  margin-top: 20px;
+  padding: 14px 40px;
+  background: #fff;
+  color: #000;
+  border: none;
+  font-weight: bold;
+}
+
+/* CART */
+.cart {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: #111;
+  padding: 30px;
+  transition: 0.4s;
+}
+
+.cart.active {
+  bottom: 0;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.5;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">QUITE RICHLES</div>
+  <nav>
+    <a href="#">Men</a>
+    <a href="#">Women</a>
+    <a href="#">Kids</a>
+    <a href="#">New</a>
+    <a href="#">Sale</a>
+  </nav>
+  <div class="icons">
+    <span>💬</span>
+    <span>🤍</span>
+    <span>🛒</span>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>QUITE RICHLES</h1>
+  <p>NEW COLLECTION</p>
+  <button>SHOP NOW</button>
+</section>
+
+<section class="products">
+  <div class="card" onclick="openProduct()">
+    <div></div>
+    <p>QUITE RICHLES PRODUCT</p>
+  </div>
+  <div class="card" onclick="openProduct()">
+    <div></div>
+    <p>QUITE RICHLES PRODUCT</p>
+  </div>
+  <div class="card" onclick="openProduct()">
+    <div></div>
+    <p>QUITE RICHLES PRODUCT</p>
+  </div>
+  <div class="card" onclick="openProduct()">
+    <div></div>
+    <p>QUITE RICHLES PRODUCT</p>
+  </div>
+</section>
+
+<footer>
+  © Quite Richles. All rights reserved.
+</footer>
+
+<!-- PRODUCT -->
+<div class="product-view" id="product">
+  <h1>QUITE RICHLES PRODUCT</h1>
+  <p>QUITE RICHLES PRODUCT DESCRIPTION</p>
+  <button class="buy" onclick="openCart()">BUY</button>
+</div>
+
+<!-- CART -->
+<div class="cart" id="cart">
+  <h2>CART</h2>
+  <p>QUITE RICHLES PRODUCT</p>
+</div>
+
+<script>
+function openProduct() {
+  document.getElementById("product").classList.add("active");
+}
+
+function openCart() {
+  document.getElementById("cart").classList.add("active");
+}
+</script>
+
+</body>
+</html>
